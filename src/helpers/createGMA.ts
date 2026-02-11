@@ -41,7 +41,7 @@ export default function createGMA(title: string, description: string, filePaths:
 
 
 		offset = buffer.writeUInt32LE(fileNum, fileNum === 1 ? offset + 2: offset); // File number (4)
-		offset += buffer.write(addonFilePath.toLowerCase(), offset); // File name (all lower case!) (n)
+		offset += buffer.write(addonFilePath, offset); // File name (n)
 		offset = buffer.writeBigInt64LE(BigInt(fileStats.size), offset +1); // file size (8)
 
 		offset = buffer.writeUInt32LE(0, offset);
