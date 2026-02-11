@@ -69,9 +69,9 @@ export default async function publishGMA(accountName: string, accountPassword: s
 	} catch (e) {
 		err = e;
 	} finally {
-		fs.unlinkSync(gmaPath);
-		fs.unlinkSync(passcodePath);
-		fs.unlinkSync(workshopVdfPath);
+		if (fs.existsSync(gmaPath)) fs.unlinkSync(gmaPath);
+		if (fs.existsSync(passcodePath)) fs.unlinkSync(passcodePath);
+		if (fs.existsSync(workshopVdfPath)) fs.unlinkSync(workshopVdfPath);
 
 		if (steamCmdProc) steamCmdProc.kill(9);
 	}
