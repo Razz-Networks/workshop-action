@@ -74,9 +74,12 @@ function publishGMA(accountName, accountPassword, workshopId, changes, accountSe
             err = e;
         }
         finally {
-            fs_1.default.unlinkSync(gmaPath);
-            fs_1.default.unlinkSync(passcodePath);
-            fs_1.default.unlinkSync(workshopVdfPath);
+            if (fs_1.default.existsSync(gmaPath))
+                fs_1.default.unlinkSync(gmaPath);
+            if (fs_1.default.existsSync(passcodePath))
+                fs_1.default.unlinkSync(passcodePath);
+            if (fs_1.default.existsSync(workshopVdfPath))
+                fs_1.default.unlinkSync(workshopVdfPath);
             if (steamCmdProc)
                 steamCmdProc.kill(9);
         }
